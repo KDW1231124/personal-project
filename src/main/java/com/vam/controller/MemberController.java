@@ -136,4 +136,46 @@ public class MemberController {
 			
 		}
 	
+		
+		 /* 로그인 */
+	    @RequestMapping(value="login", method=RequestMethod.POST)
+	    public String loginPOST(HttpServletRequest request, MemberVO member, RedirectAttributes rttr) throws Exception{
+	        
+	        //System.out.println("login 메서드 진입");
+	       // System.out.println("전달된 데이터 : " + member);
+	        
+	    	  HttpSession session = request.getSession(); // 두 가지의 변수를 선언 및 초기화를 진행할 것입니다.
+	    	                                             //먼저 session을 사용하기 위해 session 변수를 선언하고 request.getSession()으로 초기화합니다.
+	    	  MemberVO lvo = memberservice.memberLogin(member);
+	    	  
+
+	          if(lvo == null) {                                // 일치하지 않는 아이디, 비밀번호 입력 경우
+	              
+	              int result = 0;
+	              rttr.addFlashAttribute("result", result);
+	              return "redirect:/member/login";
+	              
+	          }
+	          
+	          session.setAttribute("member", lvo);             // 일치하는 아이디, 비밀번호 경우 (로그인 성공)
+	          
+	          return "redirect:/main";
+	    	
+	        
+	    }
+	 
+	    /* 메인페이지 로그아웃 */
+	    @RequestMapping(value="logout.do", method=RequestMethod.GET)
+	    public String logoutMainGET(HttpServletRequest request) throws Exception{
+	        
+	        logger.info("logoutMainGET메서드 진입");
+	        
+	        HttpSession session = request.getSession();
+	        
+	        session.invalidate();
+	        
+	        return "redirect:/main";        
+	        
+	    }
+	 
 }

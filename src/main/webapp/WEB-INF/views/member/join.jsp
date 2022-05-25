@@ -5,13 +5,47 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="/resources/css/member/join.css">
+<link rel="stylesheet" href="/resources/css/member/join.css?after">
 <script
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+</style>
 </head>
+
 <body>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" style = "font-family: 'Jua', sans-serif; font-size : x-large;" href="/main">Book Store</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href=main></a></li>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href=member/login></a></li>
+                        
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href=member/join></a></li>
+                        </li>
+                    </ul>
+                    
+                    
+                    <div class="login_area">
+			
+				<!-- 로그인 하지 않은 상태 -->
+				<c:if test = "${member == null }">
+					<div class="login_button" style = "font-family: 'Jua', sans-serif;"><a href="/member/login">로그인</a></div>
+								
+				</c:if>				
+				
+				
+				
+			</div>
+			
+			
+                </div>
+            </div>
+        </nav>
 
 <div class="wrapper">
 	<form id="join_form" method="post">
@@ -93,7 +127,7 @@
 				<span class="final_addr_ck">주소를 입력해주세요.</span>
 			</div>
 			<div class="join_button_wrap">
-				<input type="button" class="join_button" value="가입하기">
+				<input type="button" class="join_button" style="cursor:pointer" value="가입하기">
 			</div>
 		</div>
 	</form>
