@@ -18,7 +18,7 @@
 <body>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" style = "font-family: 'Jua', sans-serif; font-size : x-large;" href="/main">Book Store</a>
+                <a class="navbar-brand" style = "font-family: 'Jua', sans-serif; font-size : x-large;" href="/main">DW's Book Store</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
@@ -132,6 +132,11 @@
 		</div>
 	</form>
 </div>
+
+<!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2022</p></div>
+        </footer>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -266,9 +271,9 @@ $(".mail_check_button").click(function(){
         success:function(data){
             
             //console.log("data : " + data);
-            cehckBox.attr("disabled",false);
-            boxWrap.attr("id", "mail_check_input_box_true");
-            code = data;
+            cehckBox.attr("disabled",false); //이메일 인증 입력란[$(".mail_check_input")]이 입력이 가능하도록 속성을 변경해주는 코드
+            boxWrap.attr("id", "mail_check_input_box_true"); //이메일 인증 입력란[$(".mail_check_input_box")]의 색상이 변경되도록(회색=> 흰색) 해당 태그 id속성 값을 변경해주는 코드
+            code = data; //Controller부터 전달받은 인증번호를 위에서 선언한 code에 저장시키는 코드
         }
                 
     });
@@ -277,7 +282,7 @@ $(".mail_check_button").click(function(){
 
 
 
-/* 인증번호 비교 */
+/* 인증번호 비교 */  //해당 메서드는 인증번호 입력란에 데이터를 입력한 뒤 마우스로 다른 곳을 클릭 시에 실행
 $(".mail_check_input").blur(function(){
     
     var inputCode = $(".mail_check_input").val();        // 입력코드    

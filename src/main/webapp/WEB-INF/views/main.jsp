@@ -35,33 +35,54 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">
-                <a class="navbar-brand" style = "font-family: 'Jua', sans-serif; font-size : x-large;" href="#!">Book Store</a>
+                <a class="navbar-brand" style = "font-family: 'Jua', sans-serif; font-size : x-large;" href="#!">DW's Book Store</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href=main></a></li>
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href=member/login></a></li>
-                        
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href=member/join></a></li>
-                        </li>
-                    </ul>
+                
+                   <div class="top_area">
+			
+			<div class="search_area">
+                	<div class="search_wrap">
+                		<form id="searchForm" action="/search" method="get">
+                			<div class="search_input" style= "float : left">
+                				<select name="type">
+                					<option value="T">책 제목</option>
+                					<option value="A">작가</option>
+                				</select>
+                				<input type="text" name="keyword">
+                    			<button class='btn search_btn'>검 색</button>                				
+                			</div>
+                		</form>
+                	</div>
+			</div>           
+                    </div>
                     
                     
-                    <div class="login_area">
+         <div class="wrapper">
+	<div class="wrap">
+		<div class="top_gnb_area">
+			<ul class="list">
+				
+				
+							
+			</ul>			
+		</div>
+		
+			</div>
+                    <div class="login_area" style= "float : left">
 			
 				<!-- 로그인 하지 않은 상태 -->
 				<c:if test = "${member == null }">
 					<div class="login_button" style = "font-family: 'Jua', sans-serif;"><a href="/member/login">로그인</a></div>
 					<span style = "font-family: 'Jua', sans-serif;"><a href="/member/join">회원가입</a></span>				
 				</c:if>				
-				
+				 
 				<!-- 로그인한 상태 -->
 				<c:if test="${ member != null }">
 					<div class="login_success_area">
 						<span style = "font-family: 'Jua', sans-serif;">회원 : ${member.memberName}</span>
 						<span style = "font-family: 'Jua', sans-serif;">충전금액 : <fmt:formatNumber value="${member.money }" pattern="#,###.##"/></span>
 						<span style = "font-family: 'Jua', sans-serif;">포인트 : <fmt:formatNumber value="${member.point }" pattern="#,###" /></span>
-						<a href="/member/logout.do" style = "font-family: 'Jua', sans-serif;">로그아웃</a>
+						<a id="gnb_logout_button" href="/member/logout.do" style = "font-family: 'Jua', sans-serif;">로그아웃</a>
 						
 						<form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">
@@ -72,11 +93,17 @@
                     </form>
 					</div>
 				</c:if>
+				<c:if test="${member != null }">	<!-- 로그인 o -->		
+					<c:if test="${member.adminCk == 1 }">	<!-- 관리자 계정 -->
+						<span><a href="/admin/main" style = "font-family: 'Jua', sans-serif;">관리자 페이지</a></span>
+					</c:if>							
+					
+				</c:if>				
 				
 			</div>
 			
 			
-                </div>
+                
             </div>
         </nav>
         <!-- Header-->
@@ -88,6 +115,8 @@
                 </div>
             </div>
         </header>
+        
+        
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">
@@ -95,7 +124,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top" src="resources/img/book1.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -116,7 +145,7 @@
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top" src="resources/img/book2.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -146,7 +175,7 @@
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top" src="resources/img/book3.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -166,7 +195,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top" src="resources/img/book4.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -195,7 +224,7 @@
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top" src="resources/img/book5.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -215,7 +244,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top" src="resources/img/book6.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -236,7 +265,7 @@
                             <!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top" src="resources/img/book7.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -264,7 +293,7 @@
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
+                            <img class="card-img-top" src="resources/img/book8.jpg" alt="..." />
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
@@ -356,5 +385,6 @@
 	});
 	
 </script>
+
     </body>
 </html>

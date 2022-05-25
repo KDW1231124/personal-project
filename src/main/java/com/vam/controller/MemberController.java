@@ -144,8 +144,8 @@ public class MemberController {
 	        //System.out.println("login 메서드 진입");
 	       // System.out.println("전달된 데이터 : " + member);
 	        
-	    	  HttpSession session = request.getSession(); // 두 가지의 변수를 선언 및 초기화를 진행할 것입니다.
-	    	                                             //먼저 session을 사용하기 위해 session 변수를 선언하고 request.getSession()으로 초기화합니다.
+	    	  HttpSession session = request.getSession(); // 두 가지의 변수를 선언 및 초기화를 진행할 것.
+	    	                                             //먼저 session을 사용하기 위해 session 변수를 선언하고 request.getSession()으로 초기화.
 	    	  MemberVO lvo = memberservice.memberLogin(member);
 	    	  
 
@@ -164,7 +164,9 @@ public class MemberController {
 	        
 	    }
 	 
-	    /* 메인페이지 로그아웃 */
+	    /* 메인페이지 로그아웃 */ // 우리는 사용자의 정보를 "member"라고 네이밍 한 session을 삭제해야함. HttpSession api 문서를 보면 우리 목적에 맞는 session을 제거할 수 있는 메서드가 2개("invalidate()", "removeAttribute()") 있습니다. "invalidate()" 메서드의 경우 세션 전체를 무효화하는 메서드. "removeAttribute()"의 경우 특정 이름으로 네이밍 한 session 객체를 타기팅하여 삭제하는 메서드.
+
+	   // 로그아웃을 할 경우 사용될 세션이 없기 때문에 저는 "invalidate()" 메서드를 사용하였습니다. 아래와 같이 session을 제거하는 코드와 메서드 실행 후 main페이지로 이동할 수 있도록 return문을 작성함.
 	    @RequestMapping(value="logout.do", method=RequestMethod.GET)
 	    public String logoutMainGET(HttpServletRequest request) throws Exception{
 	        
@@ -177,5 +179,19 @@ public class MemberController {
 	        return "redirect:/main";        
 	        
 	    }
+	    
+	    /* 비동기방식 로그아웃 메서드 */
+	    @RequestMapping(value="logout.do", method=RequestMethod.POST)
+	    @ResponseBody
+	    public void logoutPOST(HttpServletRequest request) throws Exception{
+	        
+	        logger.info("비동기 로그아웃 메서드 진입");
+	        
+	        HttpSession session = request.getSession();
+	        
+	        session.invalidate();
+	        
+	    }
+	 
 	 
 }
