@@ -253,7 +253,7 @@ $('.id_input').on("propertychange change keyup paste input", function(){
 			}	
 		}// success 종료
 	}); // ajax 종료	
-});// function 종료	
+});//function 종료
 
 
 

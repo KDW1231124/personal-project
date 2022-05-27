@@ -100,7 +100,7 @@
 	/* 로그인 버튼 클릭 메서드 */
 	$(".login_button").click(function(){
 		
-		alert("로그인 성공");
+		//alert("로그인 성공");
 		
 		/* 로그인 메서드 서버 요청 */
 		$("#login_form").attr("action", "/member/login.do");
